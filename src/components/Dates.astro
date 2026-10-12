@@ -1,0 +1,147 @@
+---
+import { site } from '../data/site';
+import { nights, scheduleNote } from '../data/events';
+import { weekday, dayNumber, monthShort } from '../data/format';
+---
+
+<section class="section dates" id="dates" aria-labelledby="dates-title">
+  <div class="container dates__grid">
+    <div>
+      <p class="eyebrow">Upcoming nights</p>
+      <h2 id="dates-title">Save the <span class="serif-italic accent">date.</span></h2>
+      <p class="lead dates__note">{scheduleNote}</p>
+    </div>
+
+    <ul class="dates__list">
+      {
+        nights.map((n) => (
+          <li class="night">
+            <time class="night__cal" datetime={n.date}>
+              <span class="night__month">{monthShort(n.date)}</span>
+              <span class="night__day">{dayNumber(n.date)}</span>
+            </time>
+            <div class="night__info">
+              {n.label && <p class="night__label">{n.label}</p>}
+              <p class="night__title">
+                {weekday(n.date)} at {site.venue.name}
+              </p>
+              <p class="night__meta">
+                {site.venue.city} · {n.time ? `from ${n.time}` : 'time to be announced'}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+      <li class="night night--tba">
+        <span class="night__cal" aria-hidden="true">
+          <span class="night__month">Soon</span>
+          <span class="night__day">?</span>
+        </span>
+        <div class="night__info">
+          <p class="night__title">More nights, roughly every two weeks</p>
+          <p class="night__meta">
+            Follow us on <a href={site.socials.instagram.url}>Instagram</a> or{' '}
+            <a href={site.socials.tiktok.url}>TikTok</a> to hear first
+          </p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .dates__grid {
+    display: grid;
+    gap: clamp(2rem, 6vw, 4rem);
+    align-items: start;
+  }
+
+  @media (min-width: 60rem) {
+    .dates__grid {
+      grid-template-columns: 1fr 1.1fr;
+    }
+  }
+
+  .dates__note {
+    margin-top: 1.25rem;
+  }
+
+  .dates__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .night {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius);
+  }
+
+  .night--tba {
+    border-style: dashed;
+    border-color: #bdb6b2;
+  }
+
+  .night__cal {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 4.75rem;
+    height: 4.75rem;
+    border-radius: 0.9rem;
+    background: var(--red);
+    color: var(--paper);
+    line-height: 1;
+  }
+
+  .night--tba .night__cal {
+    background: var(--blush);
+    color: var(--red);
+  }
+
+  .night__month {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    align-self: end;
+  }
+
+  .night__day {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    font-weight: 600;
+    align-self: start;
+  }
+
+  .night__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .night__title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .night__meta {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .night__meta a {
+    text-decoration-color: var(--red);
+    text-underline-offset: 3px;
+  }
+</style>

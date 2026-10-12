@@ -1,0 +1,198 @@
+---
+import { site } from '../data/site';
+
+// What a quick search "reveals" about your date. We keep it under wraps.
+const dossier = [
+  { label: 'Full name', width: '9ch' },
+  { label: 'Instagram', width: '7ch', note: '2,4k followers' },
+  { label: 'LinkedIn', width: '11ch' },
+  { label: 'Their ex', width: '6ch' },
+  { label: 'Marktplaats reviews', width: '5ch', note: '★★☆☆☆' },
+  { label: 'Spotify Wrapped', width: '10ch' },
+];
+---
+
+<section class="section mystery" id="why" aria-labelledby="why-title">
+  <div class="container mystery__grid">
+    <div class="mystery__copy">
+      <p class="eyebrow">Why we do this</p>
+      <h2 id="why-title">
+        {site.motto[0]}<br />
+        <span class="serif-italic accent">{site.motto[1]}</span>
+      </h2>
+      <div class="mystery__text">
+        <p>
+          These days you’ve googled your date before you’ve even said hi. Your friends have seen their holiday pics,
+          read their reviews and decided what they’re like. By the time you meet, it feels like a second date with
+          someone you’ve never spoken to.
+        </p>
+        <p>
+          We think that’s a shame. At First We Meet you know nothing about your date: no name, no photo, no bio. You
+          find out who they are the old-fashioned way, by talking. A bit scary? Sure. That’s the fun part.
+        </p>
+      </div>
+    </div>
+
+    <figure class="dossier" aria-label="A search profile of your date, with everything blacked out">
+      <div class="dossier__head">
+        <span class="dossier__search" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          your date’s name
+        </span>
+        <span class="dossier__tag">Classified</span>
+      </div>
+      <dl class="dossier__list">
+        {
+          dossier.map((row) => (
+            <div class="dossier__row">
+              <dt>{row.label}</dt>
+              <dd>
+                <span class="redacted" style={`--w:${row.width}`} tabindex="0" role="img" aria-label="Redacted">
+                  <span aria-hidden="true">nice try</span>
+                </span>
+                {row.note && <span class="dossier__note">{row.note}</span>}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+      <figcaption class="dossier__caption">Find out in person.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .mystery {
+    border-top: 1px solid var(--line);
+  }
+
+  .mystery__grid {
+    display: grid;
+    gap: clamp(3rem, 7vw, 5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 60rem) {
+    .mystery__grid {
+      grid-template-columns: 1.15fr 1fr;
+    }
+  }
+
+  .mystery__text {
+    display: grid;
+    gap: 1.1rem;
+    margin-top: 1.75rem;
+    max-width: 36rem;
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+  }
+
+  .dossier {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: var(--radius);
+    padding: clamp(1.25rem, 4vw, 2rem);
+    border: 1.5px solid var(--ink);
+    box-shadow: 10px 10px 0 var(--blush), 10px 10px 0 1.5px var(--red);
+    transform: rotate(-1.5deg);
+    max-width: 30rem;
+    width: 100%;
+    justify-self: center;
+  }
+
+  .dossier__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .dossier__search {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+    padding: 0.55rem 0.9rem;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+
+  .dossier__tag {
+    flex: none;
+    padding: 0.25rem 0.6rem;
+    border: 2px solid var(--red);
+    border-radius: 0.35rem;
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transform: rotate(-4deg);
+  }
+
+  .dossier__list {
+    margin: 0;
+    display: grid;
+  }
+
+  .dossier__row {
+    display: grid;
+    grid-template-columns: minmax(7.5rem, 1fr) 1.3fr;
+    gap: 1rem;
+    align-items: center;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .dossier__row dt {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+
+  .dossier__row dd {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .redacted {
+    display: inline-grid;
+    place-items: center;
+    width: var(--w);
+    min-width: 4.5rem;
+    height: 1.3em;
+    background: var(--ink);
+    border-radius: 2px;
+    cursor: help;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: transparent;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .redacted:hover,
+  .redacted:focus-visible {
+    background: var(--red);
+    color: var(--paper);
+  }
+
+  .dossier__note {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  .dossier__caption {
+    margin-top: 1.25rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--red);
+  }
+</style>

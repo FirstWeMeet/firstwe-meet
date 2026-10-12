@@ -1,0 +1,206 @@
+---
+import { site } from '../data/site';
+
+const steps = [
+  {
+    title: 'Sign up and pick three nights',
+    text: 'Tell us who you’d like to meet and your age preference, then choose three nights that work for you. That’s it. No photos, no bio.',
+  },
+  {
+    title: 'We find your match',
+    text: 'We pair you with someone based on who you’re looking for and the age range you’ve chosen.',
+  },
+  {
+    title: 'Hear from us a week before',
+    text: `One week before the night, we’ll let you know if you have a match. Only then do you pay: €${site.price.amount}, ${site.price.includes}.`,
+  },
+  {
+    title: 'Meet. Then dance.',
+    text: `Your one-on-one blind date takes place at ${site.venue.name}. Afterwards a DJ takes over, and everyone stays for the rest of the night.`,
+  },
+];
+---
+
+<section class="section how" id="how" aria-labelledby="how-title">
+  <div class="container">
+    <p class="eyebrow">How it works</p>
+    <h2 id="how-title">Four steps. <span class="serif-italic accent">Zero swipes.</span></h2>
+
+    <ol class="how__steps">
+      {
+        steps.map((step, i) => (
+          <li class="how__step">
+            <span class="how__num" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="how__extras">
+      <article class="card card--price">
+        <p class="card__big">
+          €{site.price.amount}
+          <span>per date</span>
+        </p>
+        <h3>Pay for a date, not for an app</h3>
+        <p>
+          No subscription, no premium tier, no hidden costs. You only pay once you have a confirmed match, and your
+          first drink is included.
+        </p>
+      </article>
+
+      <article class="card card--friend">
+        <p class="card__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 32" width="56" height="38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16" cy="10" r="6"></circle><circle cx="33" cy="10" r="6"></circle><path d="M4 30c0-6.6 5.4-11 12-11s12 4.4 12 11"></path><path d="M24 22.5c2.2-2.2 5.4-3.5 9-3.5 6.6 0 12 4.4 12 11"></path></svg>
+        </p>
+        <h3>Bring a friend</h3>
+        <p>
+          Some people walk in feeling relaxed. Others like a familiar face nearby. Sign up together with a friend and,
+          if you’re both matched, you’ll have your dates on the same night.
+        </p>
+      </article>
+
+      <article class="card card--who">
+        <h3>Who it’s for</h3>
+        <ul class="tags">
+          <li>Mostly 20–30</li>
+          <li>Up to 40 welcome</li>
+          <li>Queer-friendly</li>
+          <li>Internationals welcome</li>
+          <li>{site.venue.city}</li>
+        </ul>
+        <p>Whoever you’re into, whatever language you speak: if you’re curious enough to show up, you belong here.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    background: var(--blush);
+  }
+
+  .how__steps {
+    list-style: none;
+    margin: clamp(2.5rem, 6vw, 4rem) 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 48rem) {
+    .how__steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 68rem) {
+    .how__steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .how__step {
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: clamp(1.4rem, 3vw, 1.75rem);
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
+  }
+
+  .how__num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--red);
+  }
+
+  .how__step p {
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+
+  .how__extras {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  @media (min-width: 60rem) {
+    .how__extras {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  .card {
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: clamp(1.4rem, 3vw, 2rem);
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+  }
+
+  .card p {
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+
+  .card--price {
+    background: var(--red);
+    color: var(--paper);
+  }
+
+  .card--price p {
+    color: rgb(255 255 255 / 0.9);
+  }
+
+  .card .card__big {
+    color: var(--paper);
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 10vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .card__big span {
+    margin-left: 0.35rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .card .card__icon {
+    color: var(--red);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.25rem 0 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tags li {
+    padding: 0.3rem 0.8rem;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .tags li:nth-child(3) {
+    border-color: var(--red);
+    color: var(--red);
+  }
+</style>

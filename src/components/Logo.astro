@@ -1,0 +1,38 @@
+---
+interface Props {
+  size?: 'sm' | 'lg';
+}
+const { size = 'sm' } = Astro.props;
+---
+
+<span class:list={['logo', `logo--${size}`]}>
+  <span>First we</span>
+  <span class="logo__meet">meet<span class="logo__dot" aria-hidden="true">.</span></span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    gap: 0.28em;
+    align-items: baseline;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .logo--sm {
+    font-size: 1.3rem;
+  }
+
+  .logo--lg {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .logo__meet {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--red);
+  }
+</style>

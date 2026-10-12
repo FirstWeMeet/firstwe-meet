@@ -1,0 +1,74 @@
+---
+import Logo from './Logo.astro';
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="#top" class="header__brand" aria-label="First We Meet, back to top">
+      <Logo />
+    </a>
+    <nav aria-label="Main">
+      <ul class="header__nav">
+        <li class="hide-sm"><a href="#how">How it works</a></li>
+        <li class="hide-sm"><a href="#dates">Dates</a></li>
+        <li><a class="btn header__cta" href="#signup">Sign up</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgb(255 255 255 / 0.88);
+    backdrop-filter: saturate(1.4) blur(10px);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4rem;
+  }
+
+  .header__brand {
+    text-decoration: none;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .header__nav a:not(.btn) {
+    text-decoration: none;
+    background: linear-gradient(var(--red), var(--red)) 0 100% / 0 2px no-repeat;
+    transition: background-size 0.2s ease;
+  }
+
+  .header__nav a:not(.btn):hover {
+    background-size: 100% 2px;
+  }
+
+  .header__cta {
+    min-height: 2.5rem;
+    padding: 0.4rem 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 40rem) {
+    .hide-sm {
+      display: none;
+    }
+  }
+</style>

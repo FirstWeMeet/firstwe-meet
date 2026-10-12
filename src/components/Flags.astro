@@ -1,0 +1,132 @@
+---
+const red = [
+  'Knows your star sign, your ex and your LinkedIn before the first drink',
+  'Sends the group chat a screenshot of your profile',
+  '“So… what do you do?” as the opening line',
+  'Paying €15 a month to swipe on people they’ll never meet',
+];
+
+const green = [
+  'Shows up without knowing a thing about you',
+  'Asks a second question about your answer',
+  'Brings a friend for courage (and that friend gets a date too)',
+  'Only pays when there’s actually a date',
+];
+
+---
+
+<section class="section flags" aria-labelledby="flags-title">
+  <div class="container">
+    <p class="eyebrow">Dating, rated</p>
+    <h2 id="flags-title"><span class="accent">Red flags,</span> <span class="serif-italic flags__green">green flags.</span></h2>
+
+    <div class="flags__grid">
+      <div class="flags__col flags__col--red">
+        <h3>
+          <svg class="flag" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M6 4h12l-3 4.5 3 4.5H6z" fill="currentColor"></path></svg>
+          Red flags
+        </h3>
+        <ul>{red.map((item) => <li>{item}</li>)}</ul>
+      </div>
+      <div class="flags__col flags__col--green">
+        <h3>
+          <svg class="flag" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M6 4h12l-3 4.5 3 4.5H6z" fill="currentColor"></path></svg>
+          Green flags
+        </h3>
+        <ul>{green.map((item) => <li>{item}</li>)}</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .flags {
+    padding-top: 0;
+  }
+
+  .flags__green {
+    color: var(--green);
+  }
+
+  .flags__grid {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 48rem) {
+    .flags__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .flags__col {
+    --c: var(--red);
+    border: 1.5px solid var(--line);
+    border-top: 6px solid var(--c);
+    border-radius: var(--radius);
+    padding: clamp(1.4rem, 4vw, 2rem);
+  }
+
+  .flags__col--green {
+    --c: var(--green);
+  }
+
+  .flags__col h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--c);
+    margin-bottom: 1rem;
+  }
+
+  .flag {
+    width: 1.6rem;
+    height: 1.6rem;
+    flex: none;
+  }
+
+  .flags__col--red .flag {
+    animation: wave 2.4s ease-in-out infinite;
+    transform-origin: 20% 90%;
+  }
+
+  .flags__col--green .flag {
+    animation: wave 2.4s ease-in-out 1.2s infinite;
+    transform-origin: 20% 90%;
+  }
+
+  @keyframes wave {
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+    50% {
+      transform: rotate(-10deg);
+    }
+  }
+
+  .flags__col ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+  }
+
+  .flags__col li {
+    position: relative;
+    padding: 0.8rem 0 0.8rem 1.6rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .flags__col li::before {
+    content: '';
+    position: absolute;
+    left: 0.15rem;
+    top: 1.35rem;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--c);
+  }
+</style>

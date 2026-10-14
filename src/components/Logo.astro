@@ -5,7 +5,7 @@ interface Props {
 const { size = 'sm' } = Astro.props;
 ---
 
-<span class:list={['logo', `logo--${size}`]}>
+<span class:list={['logo', `logo--${size}`]} translate="no">
   <span>First we</span>
   <span class="logo__meet">meet<span class="logo__dot" aria-hidden="true">.</span></span>
 </span>

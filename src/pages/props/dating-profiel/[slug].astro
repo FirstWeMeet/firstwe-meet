@@ -1,25 +1,17 @@
 ---
 // Prop page: a made-up swipe-app profile, used as a background shot in videos.
-// The person and the app ("Vonk") are fictional. Not linked from the site,
-// not indexed, and left out of the sitemap.
+// The people and the app ("Vonk") are fictional. Not linked from the site,
+// not indexed, and left out of the sitemap. Profiles live in src/data/props-profiles.ts.
+import { existsSync } from 'node:fs';
+import { profiles, type PropProfile } from '../../../data/props-profiles';
 
-const profile = {
-  name: 'Noor',
-  age: 29,
-  city: 'Rotterdam',
-  distance: '3 km verderop',
-  job: 'Grafisch ontwerper',
-  school: 'Willem de Kooning Academie',
-  height: '1,71 m',
-  bio: 'Op zoek naar iemand die net zo hard lacht om slechte woordgrappen als ik. Zondag = markt, koffie en een veel te lange wandeling langs de Maas.',
-  interests: ['Koffie', 'Vintage', 'Festivals', 'Koken', 'Fotografie', 'Hardlopen', 'Bordspellen'],
-  prompts: [
-    { q: 'Mijn ideale eerste date', a: 'Een drankje ergens met kaarslicht, en dan spontaan nog pizza halen.' },
-    { q: 'Ik val voor', a: 'Mensen die hun eigen playlist voor de auto hebben gemaakt.' },
-    { q: 'Mijn grootste red flag', a: 'Ik reageer pas na drie dagen op appjes. Sorry alvast.' },
-  ],
-  photos: 3,
-};
+export function getStaticPaths() {
+  return profiles.map((profile) => ({ params: { slug: profile.slug }, props: { profile } }));
+}
+
+const { profile } = Astro.props as { profile: PropProfile };
+// Only use photos that are actually in public/; the rest get a placeholder.
+const photos = profile.photos.map((src) => (existsSync(`public${src}`) ? src : null));
 ---
 
 <!doctype html>
@@ -41,12 +33,16 @@ const profile = {
       <main class="scroll">
         <section class="photo p1">
           <div class="steps">
-            {Array.from({ length: profile.photos }, (_, i) => <span class:list={{ on: i === 0 }} />)}
+            {photos.map((_, i) => <span class:list={{ on: i === 0 }} />)}
           </div>
-          <svg class="figure" viewBox="0 0 200 240" aria-hidden="true">
-            <circle cx="100" cy="88" r="42" />
-            <path d="M20 240c0-56 36-92 80-92s80 36 80 92z" />
-          </svg>
+          {photos[0] ? (
+            <img src={photos[0]} alt="" />
+          ) : (
+            <svg class="figure" viewBox="0 0 200 240" aria-hidden="true">
+              <circle cx="100" cy="88" r="42" />
+              <path d="M20 240c0-56 36-92 80-92s80 36 80 92z" />
+            </svg>
+          )}
           <div class="caption">
             <h1>{profile.name} <span>{profile.age}</span></h1>
             <p>📍 {profile.city} · {profile.distance}</p>
@@ -61,8 +57,8 @@ const profile = {
             <li>💼 {profile.job}</li>
             <li>🎓 {profile.school}</li>
             <li>📏 {profile.height}</li>
-            <li>🍷 Soms</li>
-            <li>🚭 Nee</li>
+            <li>🍷 {profile.drinks}</li>
+            <li>🚬 {profile.smokes}</li>
           </ul>
         </section>
 
@@ -80,12 +76,16 @@ const profile = {
               <p>{p.a}</p>
               <span class="heart" aria-hidden="true">♥</span>
             </section>
-            {i < 2 && (
+            {i + 1 < photos.length && (
               <section class:list={['photo', 'small', `p${i + 2}`]}>
-                <svg class="figure" viewBox="0 0 200 240" aria-hidden="true">
-                  <circle cx="100" cy="88" r="42" />
-                  <path d="M20 240c0-56 36-92 80-92s80 36 80 92z" />
-                </svg>
+                {photos[i + 1] ? (
+                  <img src={photos[i + 1]} alt="" />
+                ) : (
+                  <svg class="figure" viewBox="0 0 200 240" aria-hidden="true">
+                    <circle cx="100" cy="88" r="42" />
+                    <path d="M20 240c0-56 36-92 80-92s80 36 80 92z" />
+                  </svg>
+                )}
               </section>
             )}
           </>
@@ -214,6 +214,14 @@ const profile = {
     background: linear-gradient(180deg, #f9d98b, #e39a5b 60%, #8c4a3c);
   }
 
+  .photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .figure {
     width: 75%;
     fill: rgb(255 255 255 / 0.28);
@@ -237,6 +245,11 @@ const profile = {
 
   .steps span.on {
     background: #fff;
+  }
+
+  .steps,
+  .caption {
+    z-index: 1;
   }
 
   .caption {

@@ -1,0 +1,387 @@
+---
+// Prop page: a made-up swipe-app profile, used as a background shot in videos.
+// The person and the app ("Vonk") are fictional. Not linked from the site,
+// not indexed, and left out of the sitemap.
+
+const profile = {
+  name: 'Noor',
+  age: 29,
+  city: 'Rotterdam',
+  distance: '3 km verderop',
+  job: 'Grafisch ontwerper',
+  school: 'Willem de Kooning Academie',
+  height: '1,71 m',
+  bio: 'Op zoek naar iemand die net zo hard lacht om slechte woordgrappen als ik. Zondag = markt, koffie en een veel te lange wandeling langs de Maas.',
+  interests: ['Koffie', 'Vintage', 'Festivals', 'Koken', 'Fotografie', 'Hardlopen', 'Bordspellen'],
+  prompts: [
+    { q: 'Mijn ideale eerste date', a: 'Een drankje ergens met kaarslicht, en dan spontaan nog pizza halen.' },
+    { q: 'Ik val voor', a: 'Mensen die hun eigen playlist voor de auto hebben gemaakt.' },
+    { q: 'Mijn grootste red flag', a: 'Ik reageer pas na drie dagen op appjes. Sorry alvast.' },
+  ],
+  photos: 3,
+};
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Vonk · {profile.name}</title>
+  </head>
+  <body>
+    <div class="phone">
+      <header class="bar">
+        <span class="back" aria-hidden="true">‹</span>
+        <span class="brand">vonk</span>
+        <span class="dots" aria-hidden="true">•••</span>
+      </header>
+
+      <main class="scroll">
+        <section class="photo p1">
+          <div class="steps">
+            {Array.from({ length: profile.photos }, (_, i) => <span class:list={{ on: i === 0 }} />)}
+          </div>
+          <svg class="figure" viewBox="0 0 200 240" aria-hidden="true">
+            <circle cx="100" cy="88" r="42" />
+            <path d="M20 240c0-56 36-92 80-92s80 36 80 92z" />
+          </svg>
+          <div class="caption">
+            <h1>{profile.name} <span>{profile.age}</span></h1>
+            <p>📍 {profile.city} · {profile.distance}</p>
+            <p class="online"><i></i> Recent actief</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Over mij</h2>
+          <p>{profile.bio}</p>
+          <ul class="facts">
+            <li>💼 {profile.job}</li>
+            <li>🎓 {profile.school}</li>
+            <li>📏 {profile.height}</li>
+            <li>🍷 Soms</li>
+            <li>🚭 Nee</li>
+          </ul>
+        </section>
+
+        <section class="card">
+          <h2>Interesses</h2>
+          <ul class="chips">
+            {profile.interests.map((t) => <li>{t}</li>)}
+          </ul>
+        </section>
+
+        {profile.prompts.map((p, i) => (
+          <>
+            <section class="card prompt">
+              <h3>{p.q}</h3>
+              <p>{p.a}</p>
+              <span class="heart" aria-hidden="true">♥</span>
+            </section>
+            {i < 2 && (
+              <section class:list={['photo', 'small', `p${i + 2}`]}>
+                <svg class="figure" viewBox="0 0 200 240" aria-hidden="true">
+                  <circle cx="100" cy="88" r="42" />
+                  <path d="M20 240c0-56 36-92 80-92s80 36 80 92z" />
+                </svg>
+              </section>
+            )}
+          </>
+        ))}
+      </main>
+
+      <footer class="actions" aria-hidden="true">
+        <span class="btn nope">✕</span>
+        <span class="btn star">★</span>
+        <span class="btn like">♥</span>
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #f3efed;
+    --card: #ffffff;
+    --ink: #1c1a1a;
+    --soft: #6b6463;
+    --line: #ebe5e3;
+    --brand: #ff4f5e;
+    --brand-2: #ff8a5c;
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(circle at 30% 20%, #ffe2dc, #e9e3f5 60%, #dfe9f1);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    color: var(--ink);
+  }
+
+  .phone {
+    position: relative;
+    width: min(100vw, 420px);
+    height: min(100vh, 880px);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgb(0 0 0 / 0.18);
+  }
+
+  @media (min-width: 480px) {
+    .phone {
+      border-radius: 44px;
+      border: 10px solid #111;
+    }
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.04em;
+    background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .back {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--soft);
+  }
+
+  .dots {
+    color: var(--soft);
+    letter-spacing: 0.1em;
+  }
+
+  .scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 12px 110px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scrollbar-width: none;
+  }
+
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .photo {
+    position: relative;
+    flex: none;
+    height: 520px;
+    border-radius: 22px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .photo.small {
+    height: 380px;
+  }
+
+  .p1 {
+    background: linear-gradient(160deg, #f6b7a4, #c76d7e 55%, #5b3a5e);
+  }
+  .p2 {
+    background: linear-gradient(200deg, #a9d3c9, #5d8f9c 60%, #2f4858);
+  }
+  .p3 {
+    background: linear-gradient(180deg, #f9d98b, #e39a5b 60%, #8c4a3c);
+  }
+
+  .figure {
+    width: 75%;
+    fill: rgb(255 255 255 / 0.28);
+  }
+
+  .steps {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    gap: 6px;
+  }
+
+  .steps span {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: rgb(255 255 255 / 0.4);
+  }
+
+  .steps span.on {
+    background: #fff;
+  }
+
+  .caption {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 80px 20px 20px;
+    color: #fff;
+    background: linear-gradient(transparent, rgb(0 0 0 / 0.55));
+  }
+
+  .caption h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 800;
+  }
+
+  .caption h1 span {
+    font-weight: 400;
+  }
+
+  .caption p {
+    margin: 4px 0 0;
+    font-size: 0.95rem;
+    opacity: 0.95;
+  }
+
+  .online i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 4px;
+    border-radius: 50%;
+    background: #3ddc84;
+  }
+
+  .card {
+    position: relative;
+    background: var(--card);
+    border-radius: 22px;
+    padding: 20px;
+  }
+
+  .card h2 {
+    margin: 0 0 8px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--soft);
+  }
+
+  .card p {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .facts,
+  .chips {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chips {
+    margin: 0;
+  }
+
+  .facts li,
+  .chips li {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    font-size: 0.9rem;
+  }
+
+  .chips li:nth-child(-n + 3) {
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+
+  .prompt h3 {
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .prompt p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+    padding-right: 30px;
+  }
+
+  .heart {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--brand);
+  }
+
+  .actions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    padding: 20px 0 26px;
+    background: linear-gradient(transparent, var(--bg) 40%);
+  }
+
+  .btn {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--card);
+    font-size: 1.6rem;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.12);
+  }
+
+  .btn.star {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    color: #3d9bff;
+  }
+
+  .nope {
+    color: #8b8584;
+  }
+
+  .like {
+    color: #fff;
+    background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  }
+</style>

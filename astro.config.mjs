@@ -5,5 +5,5 @@ import { site } from './src/data/site.ts';
 
 export default defineConfig({
   site: site.url,
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/props/') })],
 });

@@ -29,3 +29,9 @@ en vervang die bestandsnamen in de HTML door de links die Brevo geeft.
 
 Zie je in Tikkie dat iemand betaald heeft, zet die persoon dan op de lijst "Betaald".
 Brevo stuurt de bevestiging dan vanzelf.
+
+## Mobiel (stijl A)
+Alle vier de mails zijn nu geschikt voor mobiel:
+- De koptekst staat boven de foto, zodat de foto niet meer wordt uitgerekt.
+- De tekst is groter (16–17px) en de knop is op je telefoon zo breed als het scherm.
+- De foto's komen van `img.mailinblue.com`. Zie je een foto niet? Zet die link dan terug naar `img-thumb.mailinblue.com`.

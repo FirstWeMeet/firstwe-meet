@@ -34,4 +34,4 @@ Brevo stuurt de bevestiging dan vanzelf.
 Alle vier de mails zijn nu geschikt voor mobiel:
 - De koptekst staat boven de foto, zodat de foto niet meer wordt uitgerekt.
 - De tekst is groter (16–17px) en de knop is op je telefoon zo breed als het scherm.
-- Foto-links: het logo staat op `img.mailinblue.com`, de twee foto's op `img-thumb.mailinblue.com`. Alleen deze links werken.
+- Foto-links: logo, match en piano staan alle drie op `img.mailinblue.com` (als JPG geüpload, dus scherp).

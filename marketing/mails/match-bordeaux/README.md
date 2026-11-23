@@ -14,7 +14,7 @@ Kolommen (attributen) per contact:
 | EMAIL | sanne@voorbeeld.nl |
 | FIRSTNAME | Sanne |
 | VRIEND | Lisa (alleen voor samen aangemeld) |
-| TIKKIE | https://tikkie.me/pay/... (eigen Tikkie van €20 per persoon) |
+| TIKKIE | niet meer nodig: de knop gaat naar firstwemeet.nl/bevestigen (ASN-betaalverzoek) |
 
 Lijsten: **Match – alleen**, **Match – samen**, **Betaald**.
 

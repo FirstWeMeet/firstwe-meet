@@ -19,7 +19,7 @@ Kolommen (attributen) per contact:
 Lijsten: **Match – alleen**, **Match – samen**, **Betaald**.
 
 ## Foto's
-Upload `logo.png`, `cocktails-heel.jpg`, `piano.jpg`, `torn.png` en `torn-top.png` in Brevo
+Upload `foto-logo.jpg`, `foto-match.jpg` en `foto-piano.jpg` in Brevo (de gescheurde randjes zitten al in de foto)
 en vervang die bestandsnamen in de HTML door de links die Brevo geeft.
 
 ## Automatische bevestiging

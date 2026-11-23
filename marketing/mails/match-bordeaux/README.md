@@ -14,7 +14,7 @@ Kolommen (attributen) per contact:
 | EMAIL | sanne@voorbeeld.nl |
 | FIRSTNAME | Sanne |
 | VRIEND | Lisa (alleen voor samen aangemeld) |
-| TIKKIE | niet meer nodig: de knop gaat naar firstwemeet.nl/bevestigen (ASN-betaalverzoek) |
+| TIKKIE | niet meer nodig: de knop gaat naar de Tally-betaalpagina https://tally.so/r/RWDV9Q (ASN-betaalverzoek) |
 
 Lijsten: **Match – alleen**, **Match – samen**, **Betaald**.
 

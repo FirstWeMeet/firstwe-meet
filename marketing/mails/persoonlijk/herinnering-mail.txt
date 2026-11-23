@@ -1,0 +1,11 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Je match wacht nog op je</title></head>
+<body style="margin:0;padding:0;background:#ffffff;">
+<div style="max-width:560px;margin:0 auto;padding:24px 20px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;color:#222222;">
+<p style="margin:0 0 16px;">Hi {{ contact.FIRSTNAME }},</p>
+<p style="margin:0 0 16px;">Een paar dagen geleden kreeg je goed nieuws: we hebben een match voor je gevonden. Je date zit al klaar, maar jouw plek is nog niet bevestigd.</p>
+<p style="margin:0 0 16px;">Je hebt nog 2 dagen. Daarna gaat je match naar iemand anders, en dat zouden we jammer vinden (je date ook).<br><a href="https://tally.so/r/RWDV9Q" style="color:#4a0e10;font-weight:bold;">Bevestig hier je plek</a></p>
+<p style="margin:0 0 16px;"><b>Wanneer:</b> donderdag 10 december, 20:00<br><b>Waar:</b> Café De Gulle Gier, Rotterdam<br><b>Prijs:</b> €20, eerste drankje inbegrepen</p>
+<p style="margin:0 0 16px;">Twijfel je, of heb je een vraag? Antwoord gewoon op deze mail.</p>
+<p style="margin:0 0 16px;">Tot de 10e!</p>
+<p style="margin:0 0 16px;">Groetjes,<br><b style="color:#4a0e10;">First We Meet</b></p>
+</div></body></html>

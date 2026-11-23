@@ -12,7 +12,7 @@ Kolommen (attributen) per contact:
 | Attribuut | Voorbeeld |
 |---|---|
 | EMAIL | sanne@voorbeeld.nl |
-| VOORNAAM | Sanne |
+| FIRSTNAME | Sanne |
 | VRIEND | Lisa (alleen voor samen aangemeld) |
 | TIKKIE | https://tikkie.me/pay/... (eigen Tikkie van €20 per persoon) |
 

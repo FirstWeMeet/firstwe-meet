@@ -34,4 +34,4 @@ Brevo stuurt de bevestiging dan vanzelf.
 Alle vier de mails zijn nu geschikt voor mobiel:
 - De koptekst staat boven de foto, zodat de foto niet meer wordt uitgerekt.
 - De tekst is groter (16–17px) en de knop is op je telefoon zo breed als het scherm.
-- De foto's komen van `img.mailinblue.com`. Zie je een foto niet? Zet die link dan terug naar `img-thumb.mailinblue.com`.
+- Foto-links: het logo staat op `img.mailinblue.com`, de twee foto's op `img-thumb.mailinblue.com`. Alleen deze links werken.
